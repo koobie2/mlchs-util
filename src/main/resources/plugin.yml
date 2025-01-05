@@ -1,0 +1,7 @@
+name: MlchsUtil
+version: 1.0.0
+main: io.github.koobie2.mlchsutil.MlchsUtil
+description: utilities for the mlchs server
+author: koobie2
+website: https://papermc.io
+api-version: '1.21.4'
