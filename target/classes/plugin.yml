@@ -5,3 +5,6 @@ description: utilities for the mlchs server
 author: koobie2
 website: https://papermc.io
 api-version: '1.21.4'
+commands:
+  jail:
+  	description: usage: jail <player> : if player is not specified it defaults to the sending player
