@@ -1,10 +1,14 @@
 name: MlchsUtil
 version: 1.0.0
 main: io.github.koobie2.mlchsutil.MlchsUtil
-description: utilities for the mlchs server
+description: Utilities for the mlchs server.
 author: koobie2
 website: https://papermc.io
 api-version: '1.21.4'
 commands:
   jail:
-  	description: usage: jail <player> : if player is not specified it defaults to the sending player
+    description: Jails a player, defaults to the sender if no player is specified. Unjails them after a specified time if time is specified.
+    usage: /<command> player time
+  unjail:
+    description: Unjail a player if they are already jailed.
+    usage: /<command> player
