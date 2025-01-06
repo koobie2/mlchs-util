@@ -5,11 +5,11 @@
 
   <groupId>io.github.koobie2</groupId>
   <artifactId>mlchs-util</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>mlchs-util</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://github.com/koobie2/mlchs-util</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
