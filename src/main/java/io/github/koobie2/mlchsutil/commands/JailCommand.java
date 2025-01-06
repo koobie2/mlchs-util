@@ -13,7 +13,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 import io.github.koobie2.mlchsutil.MlchsUtil;
 import net.kyori.adventure.util.Ticks;
 
-@MlchsCommand
 public class JailCommand {
 	protected static final NamespacedKey JAILED = new NamespacedKey(MlchsUtil.pluginInstance, "jailed");
 	protected static final NamespacedKey POSX_ON_JAILED = new NamespacedKey(MlchsUtil.pluginInstance, "x-on-jailed");

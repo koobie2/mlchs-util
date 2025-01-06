@@ -6,9 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
-public class UnjailCommand implements IMlchsCommand {
+public class UnjailCommand {
 
-	@Override
 	public boolean command(CommandSender sender, Command command, String label, String[] args) {
 		Player targetPlayer = null;
 
