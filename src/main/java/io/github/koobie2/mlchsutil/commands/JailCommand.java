@@ -5,22 +5,29 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitScheduler;
 
+import com.destroystokyo.paper.event.player.PlayerLaunchProjectileEvent;
+
 import io.github.koobie2.mlchsutil.MlchsUtil;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.util.Ticks;
 
-public class JailCommand {
+public class JailCommand implements Listener, CommandExecutor {
 	protected static final NamespacedKey JAILED = new NamespacedKey(MlchsUtil.pluginInstance, "jailed");
 	protected static final NamespacedKey POSX_ON_JAILED = new NamespacedKey(MlchsUtil.pluginInstance, "x-on-jailed");
 	protected static final NamespacedKey POSY_ON_JAILED = new NamespacedKey(MlchsUtil.pluginInstance, "y-on-jailed");
 	protected static final NamespacedKey POSZ_ON_JAILED = new NamespacedKey(MlchsUtil.pluginInstance, "z-on-jailed");
 	
-	public boolean command(CommandSender sender, Command command, String label, String[] args) {
-		
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player targetPlayer = null;
 		if (command.getName().equalsIgnoreCase("jail") && sender.isOp()) {
 			if (args.length >= 1) {
@@ -42,7 +49,7 @@ public class JailCommand {
 			if (targetPlayer.getPersistentDataContainer().get(JAILED, PersistentDataType.BOOLEAN) == null || targetPlayer.getPersistentDataContainer().get(JAILED, PersistentDataType.BOOLEAN) == false) {
 				jailPlayer(targetPlayer);
 			}
-				return true;
+			return true;
 		}
 		return false;
 	}
@@ -100,5 +107,32 @@ public class JailCommand {
 				}
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onBlockDamage(BlockDamageEvent event) {
+		if (!event.getPlayer().getPersistentDataContainer().get(JAILED, PersistentDataType.BOOLEAN)) {
+			return;
+		}
+		event.getPlayer().sendActionBar(Component.text("theres no breaking blocks in jail"));
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onBlockPlace(BlockPlaceEvent event) {
+		if (!event.getPlayer().getPersistentDataContainer().get(JAILED, PersistentDataType.BOOLEAN)) {
+			return;
+		}
+		event.getPlayer().sendActionBar(Component.text("theres no placing blocks in jail"));
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onProjectileThrown(PlayerLaunchProjectileEvent event) {
+		if (!event.getPlayer().getPersistentDataContainer().get(JAILED, PersistentDataType.BOOLEAN)) {
+			return;
+		}
+		event.getPlayer().sendActionBar(Component.text("theres no throwing things in jail"));
+		event.setCancelled(true);
 	}
 }
