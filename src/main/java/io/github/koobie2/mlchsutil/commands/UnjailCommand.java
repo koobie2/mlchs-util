@@ -1,6 +1,8 @@
 package io.github.koobie2.mlchsutil.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,13 +25,21 @@ public class UnjailCommand implements CommandExecutor {
 				}
 			} 
 			if (targetPlayer.getPersistentDataContainer().get(JailCommand.JAILED, PersistentDataType.BOOLEAN)) {
-				JailCommand.unjailPlayer(targetPlayer);
+				unjailPlayer(targetPlayer);
 			} else {
-				sender.sendMessage("That player is already jailed");
+				sender.sendMessage("That player is already not in jail.");
 			}
 
 			return true;
 		}
 		return false;
+	}
+	
+	protected static void unjailPlayer(Player player) {
+		for (int[] blockPosition : player.getPersistentDataContainer().get(JailCommand.JAILED_BLOCKS_POSITIONS, PersistentDataType.LIST.integerArrays())) {
+			Location blockLocation = new Location(player.getWorld(), blockPosition[0], blockPosition[1], blockPosition[2]);
+			blockLocation.getBlock().setType(Material.AIR);
+		}
+		player.getPersistentDataContainer().set(JailCommand.JAILED, PersistentDataType.BOOLEAN, false);
 	}
 }
