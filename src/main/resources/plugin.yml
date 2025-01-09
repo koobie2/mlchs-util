@@ -1,5 +1,5 @@
 name: MlchsUtil
-version: 1.0.0
+version: 1.2.0
 main: io.github.koobie2.mlchsutil.MlchsUtil
 description: Utilities for the mlchs server.
 author: koobie2
@@ -12,3 +12,12 @@ commands:
   unjail:
     description: Unjail a player if they are already jailed.
     usage: /<command> player
+  playtime:
+    description: Display the players playtime if player is specified. Otherwise display the senders playtime if sender is a player.
+    usage: /<command> player
+  topplaytime:
+    description: Display a leaderboard of playtime. if amount is specified only show amount players.
+    usage: /<command> amount
+  setplaytime:
+    description: Set the players time.
+    usage: /<command> player hours minutes seconds
